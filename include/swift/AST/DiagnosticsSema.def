@@ -101,7 +101,7 @@ ERROR(could_not_find_enum_case,none,
 
 NOTE(did_you_mean_raw_type,none,
      "did you mean to specify a raw type on the enum declaration?", ())
-     
+
 NOTE(did_you_mean_generic_param_as_conformance,none,
      "did you mean to declare %0 as a protocol conformance for %1?", (DeclName, Type))
 
@@ -1111,7 +1111,7 @@ NOTE(optional_key_path_root_base_chain, none,
 NOTE(optional_key_path_root_base_unwrap, none,
      "unwrap the optional using '!.' to access unwrapped type member %0",
      (DeclNameRef))
-    
+
 ERROR(missing_unwrap_optional_try,none,
       "value of optional type %0 not unwrapped; did you mean to use 'try!' "
       "or chain with '?'?",
@@ -1122,7 +1122,7 @@ NOTE(missing_forced_downcast, none,
      "did you mean to use 'as!' to force downcast?", ())
 NOTE(missing_optional_downcast, none,
      "did you mean to use 'as?' to conditionally downcast?", ())
-     
+
 WARNING(coercion_may_fail_warning,none,
         "coercion from %0 to %1 may fail; use 'as?' or 'as!' instead",
         (Type, Type))
@@ -1320,7 +1320,7 @@ ERROR(nominal_type_not_attribute,none,
 
 ERROR(mutating_invalid_global_scope,none, "%0 is only valid on methods",
       (SelfAccessKind))
-ERROR(mutating_invalid_classes,none, "%0 is not valid on %1s in " 
+ERROR(mutating_invalid_classes,none, "%0 is not valid on %1s in "
       "%select{classes|class-bound protocols}2",
       (SelfAccessKind, DescriptiveDeclKind, bool))
 
@@ -2374,7 +2374,7 @@ NOTE(same_type_redundancy_here,none,
      "inferred from type here}0",
      (unsigned, Type, Type))
 ERROR(requires_superclass_conflict,none,
-      "%select{generic parameter %1 cannot|protocol %1 cannot require 'Self' to|" 
+      "%select{generic parameter %1 cannot|protocol %1 cannot require 'Self' to|"
       "%1 cannot}0 be a subclass of both %2 and %3",
       (unsigned, Type, Type, Type))
 WARNING(redundant_superclass_constraint,none,
@@ -2456,7 +2456,7 @@ NOTE(overridden_near_match_here,none,
 ERROR(override_decl_extension,none,
       "%select{|non-@objc}0 %2 %3 %select{"
       "is declared in extension of %4 and cannot be overriden|"
-      "declared in %4 cannot be overriden from extension}1", 
+      "declared in %4 cannot be overriden from extension}1",
       (bool, bool, DescriptiveDeclKind, DeclName, DeclName))
 NOTE(overridden_here,none,
      "overridden declaration is here", ())
@@ -2919,7 +2919,7 @@ NOTE(automatic_protocol_synthesis_unsupported,none,
     "automatic synthesis of '%0' is not supported for %select{classes|structs}1",
     (StringRef, unsigned))
 NOTE(comparable_synthesis_raw_value_not_allowed, none,
-     "enum declares raw type %0, preventing synthesized conformance of %1 to %2", 
+     "enum declares raw type %0, preventing synthesized conformance of %1 to %2",
      (Type, Type, Type))
 
 // Dynamic Self
@@ -3382,15 +3382,15 @@ ERROR(unordered_adjacent_operators,none,
 ERROR(missing_builtin_precedence_group,none,
       "broken standard library: missing builtin precedence group %0",
       (Identifier))
-WARNING(nan_comparison, none, 
+WARNING(nan_comparison, none,
        "comparison with '.nan' using %0 is always %select{false|true}1, use "
        "'%2.isNaN' to check if '%3' %select{is not a number|is a number}1",
        (Identifier, bool, StringRef, StringRef))
-WARNING(nan_comparison_without_isnan, none, 
-       "comparison with '.nan' using %0 is always %select{false|true}1", 
+WARNING(nan_comparison_without_isnan, none,
+       "comparison with '.nan' using %0 is always %select{false|true}1",
        (Identifier, bool))
-WARNING(nan_comparison_both_nan, none, 
-       "'.nan' %0 '.nan' is always %select{false|true}1", 
+WARNING(nan_comparison_both_nan, none,
+       "'.nan' %0 '.nan' is always %select{false|true}1",
        (StringRef, bool))
 
 // If you change this, also change enum TryKindForDiagnostics.
@@ -4147,7 +4147,7 @@ NOTE(note_add_actorindependent_to_decl,none,
      "add '@actorIndependent' to %0 to make this %1 independent of the actor",
      (DeclName, DescriptiveDeclKind))
 NOTE(note_add_globalactor_to_function,none,
-     "add '@%0' to make %1 %2 part of global actor %3", 
+     "add '@%0' to make %1 %2 part of global actor %3",
      (StringRef, DescriptiveDeclKind, DeclName, Type))
 FIXIT(insert_globalactor_attr, "@%0 ", (Type))
 ERROR(not_objc_function_async,none,
@@ -4513,7 +4513,7 @@ ERROR(differentiable_function_type_invalid_result,none,
       "%select{| and satisfy '%0 == %0.TangentVector'}1, but the enclosing "
       "function type is '@differentiable%select{|(linear)}1'",
       (StringRef, bool))
-ERROR(differentiable_function_type_no_differentiability_parameters, 
+ERROR(differentiable_function_type_no_differentiability_parameters,
       none,
       "'@differentiable' function type requires at least one differentiability "
       "parameter, i.e. a non-'@noDerivative' parameter whose type conforms to "
@@ -5361,6 +5361,10 @@ ERROR(override_nsobject_hash_error,none,
       "`NSObject.hash(into:)` is not overridable; "
       "subclasses can customize hashing by overriding the `hash` property", ())
 
+WARNING(synthesized_hashable_may_not_match_custom_equatable, none,
+        "automatically generated 'Hashable' implementation for type %0 "
+        "may not match the behavior of custom '==' operator", (Type))
+NOTE(add_custom_hashable, none, "add a custom 'hash(into:)' method", ())
 WARNING(hashvalue_implementation,none,
         "'Hashable.hashValue' is deprecated as a protocol requirement; "
         "conform type %0 to 'Hashable' by implementing 'hash(into:)' instead",
